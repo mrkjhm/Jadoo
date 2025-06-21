@@ -3,6 +3,8 @@
 import React, { useEffect, useRef } from 'react'
 import Image from 'next/image'
 import {motion, useAnimation, useInView, Variants} from 'framer-motion'
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
 
 import { assets, bookingCard, bookingSteps } from '@/assets/assets'
 import { useScrollDirection } from '@/components/Common/useScrollDirection'
@@ -17,6 +19,8 @@ export default function Booking() {
     const h2Ref = useRef(null);
     const rightRef = useRef(null);
     const stepsRef = useRef(null); // ✅ NEW ref
+
+    const iconRefs = useRef<HTMLDivElement[]>([]);
 
     // InView
     const h3InView = useInView(h3Ref, { amount: 0.1 })
@@ -74,6 +78,24 @@ export default function Booking() {
         }
     }, [rightInView, direction, rightControls])
 
+    // GSAP
+    useGSAP(() => {
+        iconRefs.current.forEach((icon) => {
+            const delay = Math.random(); // 0 to 1 sec
+            const duration = 0.8 + Math.random() * 0.6; // 0.8 to 1.4 sec
+
+            gsap.to(icon, {
+                y: 15,
+                repeat: -1,
+                yoyo: true,
+                delay,
+                duration,
+                ease: 'power1.in'
+            });
+        });
+    }, []);
+
+
     return (
         <div className={`${styles.main} custom-padding`} id="booking">
             <div className={styles.container}>
@@ -116,7 +138,12 @@ export default function Booking() {
                                     className={styles.steps}
                                     variants={stepItem}
                                 >
-                                    <div className={styles.icon}>
+                                    <div
+                                        className={styles.icon}
+                                        ref={(el) => {
+                                            if (el) iconRefs.current[index] = el;
+                                        }}
+                                    >
                                         <Image src={item.image} alt="icon" />
                                     </div>
                                     <div className={styles.details}>

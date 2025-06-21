@@ -3,6 +3,8 @@
 import React, { useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { motion, useAnimation, useInView } from 'framer-motion';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
 
 import Framer from '@/components/Common/Framer';
 import Gsap from '@/components/Common/Gsap';
@@ -55,6 +57,25 @@ export default function Landing() {
             : { opacity: 0, y: direction === 'up' ? -20 : 20 });
     }, [buttonsInView, direction, buttonsControls]);
 
+    // GSAP
+    useGSAP(() => {
+        gsap.fromTo('#circleArrow', {
+                x:0,
+                rotation: 0,
+                borderRadius: '20%'
+            },
+            {
+                x:0,
+                repeat: -1,
+                yoyo:true,
+                rotation: 360,
+                borderRadius: '100%',
+                duration: 2,
+                ease: 'bounce.out',
+            }
+        )
+    }, [])
+
     return (
         <div className={`${styles.main} custom-padding`}>
             <div className={`${styles.container} container mx-auto`}>
@@ -105,7 +126,7 @@ export default function Landing() {
                         </Gsap>
                         <div className={styles.play}>
                             <Framer>
-                                <button className={styles.arrow}>
+                                <button className={styles.arrow} id="circleArrow">
                                     <i className="ri-arrow-right-s-fill"></i>
                                 </button>
                             </Framer>

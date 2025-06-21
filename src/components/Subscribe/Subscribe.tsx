@@ -1,11 +1,13 @@
 import React, {useEffect, useRef} from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion';
+import { useGSAP } from '@gsap/react';
+import {useAnimation, useInView} from "framer-motion";
+import gsap from "gsap";
 
 import Gsap from '../Common/Gsap'
 import { assets } from '@/assets/assets'
 import styles from './subscribe.module.scss'
-import {useAnimation, useInView} from "framer-motion";
 import {useScrollDirection} from "@/components/Common/useScrollDirection";
 
 export default function Subscribe() {
@@ -27,6 +29,25 @@ export default function Subscribe() {
         }
     }, [isInView, direction, controls]);
 
+    useGSAP(() => {
+        gsap.fromTo('#send', {
+                x:0,
+                rotation: 0,
+                borderRadius: '20%'
+            },
+            {
+                x:0,
+                repeat: -1,
+                yoyo:true,
+                rotation: 360,
+                borderRadius: '100%',
+                duration: 2,
+                ease: 'bounce.out',
+            }
+        )
+    }, [])
+
+
     return (
         <div className={`${styles.main} custom-padding`}>
             <div className={styles.container}>
@@ -39,7 +60,7 @@ export default function Subscribe() {
                     {/*<Image className={styles.image} src={assets.background} alt="background" />*/}
                     {/*<Image className={styles.send} src={assets.send2} alt="send" />*/}
                     <Gsap>
-                        <Image className={styles.send} src={assets.send2} alt="send" />
+                        <Image className={styles.send} src={assets.send2} alt="send" id="send" />
                     </Gsap>
                     <h2>Subscribe to get information, latest news and other interesting offers about Jadoo</h2>
                     <div className={styles.lower}>
