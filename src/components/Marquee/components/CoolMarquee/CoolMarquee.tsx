@@ -72,13 +72,21 @@ const CoolMarquee = ({ children }: Props) => {
 
     return (
         <div className={styles.container} ref={containerRef}>
-            <motion.div animate={marqueeAnimation} className={styles.marquee}>
+            <motion.div
+                animate={{ x: ['0%', '-100%'] }}
+                transition={{ duration: 50, ease: 'linear', repeat: Infinity }}
+                className={styles.marquee}
+            >
                 <div ref={marqueeRef} className={styles.firstMarquee}>
                     {children}
                 </div>
                 {multiplyChildren(multiplier)}
             </motion.div>
-            <motion.div animate={marqueeAnimation} className={styles.marquee}>
+            <motion.div
+                animate={{ x: ['0%', '-100%'] }}
+                transition={{ duration: 50, ease: 'linear', repeat: Infinity }}
+                className={styles.marquee}
+            >
                     {children}
                 {multiplyChildren(multiplier)}
 
