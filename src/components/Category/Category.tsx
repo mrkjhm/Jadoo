@@ -2,7 +2,7 @@
 
 import React, { useRef, useEffect } from 'react';
 import Image from 'next/image';
-import { motion, useInView, useAnimation } from 'framer-motion';
+import {motion, useInView, useAnimation, Variants} from 'framer-motion';
 
 import Gsap from '../Common/Gsap'
 import { useScrollDirection } from "../Common/useScrollDirection";
@@ -28,12 +28,11 @@ export default function Category() {
         visible: {
             transition: {
                 staggerChildren: 0.25,
-                ease: "easeOut",
             },
         },
     };
 
-    const cardItem = {
+    const cardItem: Variants = {
         hidden: { opacity: 0, y: 20, transition: { duration: 0.4, ease: "easeInOut" } },
         visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
     };
@@ -89,21 +88,23 @@ export default function Category() {
 
                 </div>
                 <div className={styles.decor1}><Image src={assets.decor1} alt=""/></div>
-                <motion.div
-                    ref={cardRef}
-                    className={styles.cards}
-                    variants={cardContainer}
-                    initial="hidden"
-                    animate={cardInView ? "visible" : "hidden"}
-                >
-                    {category.map((item, index) => (
-                        <motion.div key={index} className={styles.card}  variants={cardItem}>
-                            <Image src={item.image} className={styles.image} alt="image"/>
-                            <h3>{item.heading}</h3>
-                            <p>{item.subHeading}</p>
-                        </motion.div>
-                    ))}
-                </motion.div>
+                <div className={styles.cardContainer}>
+                    <motion.div
+                        ref={cardRef}
+                        className={styles.cards}
+                        variants={cardContainer}
+                        initial="hidden"
+                        animate={cardInView ? "visible" : "hidden"}
+                    >
+                        {category.map((item, index) => (
+                            <motion.div key={index} className={styles.card}  variants={cardItem}>
+                                <Image src={item.image} className={styles.image} alt="image"/>
+                                <h3>{item.heading}</h3>
+                                <p>{item.subHeading}</p>
+                            </motion.div>
+                        ))}
+                    </motion.div>
+                </div>
             </div>
         </div>
     )

@@ -63,10 +63,11 @@ const CoolMarquee = ({ children }: Props) => {
         x: ['0%', '-100%'],
         transition: {
             duration: 50,
-            ease: 'linear',
+            ease: [0, 0, 1, 1], // ✅ This is the linear curve
             repeat: Infinity,
-        }
-    };
+        },
+    }
+
 
     if (!isMounted) return null;
 

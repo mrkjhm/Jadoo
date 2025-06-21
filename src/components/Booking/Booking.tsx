@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef } from 'react'
 import Image from 'next/image'
-import { motion, useAnimation, useInView } from 'framer-motion'
+import {motion, useAnimation, useInView, Variants} from 'framer-motion'
 
 import { assets, bookingCard, bookingSteps } from '@/assets/assets'
 import { useScrollDirection } from '@/components/Common/useScrollDirection'
@@ -38,12 +38,11 @@ export default function Booking() {
         visible: {
             transition: {
                 staggerChildren: 0.25,
-                ease: "easeOut",
             },
         },
     };
 
-    const stepItem = {
+    const stepItem: Variants = {
         hidden: { opacity: 0, y: 20, transition: { duration: 0.4, ease: "easeInOut" } },
         visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
     };
@@ -116,7 +115,6 @@ export default function Booking() {
                                     key={index}
                                     className={styles.steps}
                                     variants={stepItem}
-                                        transition={{ duration: 0.6, delay: 0.05  }}
                                 >
                                     <div className={styles.icon}>
                                         <Image src={item.image} alt="icon" />

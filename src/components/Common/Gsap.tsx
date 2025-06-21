@@ -5,7 +5,7 @@ import gsap from 'gsap'
 
 type Props = {
     children: React.ReactElement
-    strength?: number // 👈 optional strength prop
+    strength?: number
 }
 
 export default function Magnetic({ children, strength = 0.5 }: Props) {
@@ -46,5 +46,9 @@ export default function Magnetic({ children, strength = 0.5 }: Props) {
         }
     }, [strength])
 
-    return React.cloneElement(children, { ref: magneticRef })
+    return (
+        <div ref={magneticRef} style={{ display: 'inline-block' }}>
+            {children}
+        </div>
+    )
 }

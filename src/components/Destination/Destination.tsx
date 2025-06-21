@@ -4,7 +4,7 @@ import Image from 'next/image';
 import styles from './destination.module.scss';
 import { destination } from '@/assets/assets';
 import Gsap from '../Common/Gsap'
-import {motion, useAnimation, useInView} from "framer-motion";
+import {motion, useAnimation, useInView, Variants} from "framer-motion";
 import {useScrollDirection} from "@/components/Common/useScrollDirection";
 
 export default function Destination() {
@@ -27,12 +27,11 @@ export default function Destination() {
         visible: {
             transition: {
                 staggerChildren: 0.25,
-                ease: "easeOut",
             },
         },
     };
 
-    const cardItem = {
+    const cardItem: Variants = {
         hidden: { opacity: 0, y: 20, transition: { duration: 0.4, ease: "easeInOut" } },
         visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
     };
@@ -83,33 +82,35 @@ export default function Destination() {
                     ))}
                 </h1>
             </div>
+            <div className={styles.cardContainer}>
 
-            <motion.div
-                className={styles.cards}
-                ref={cardRef}
-                variants={cardContainer}
-                initial="hidden"
-                animate={cardInView ? "visible" : "hidden"}
-            >
-                {destination.map((item, index) => (
-                    <motion.div  variants={cardItem} key={index}>
+                <motion.div
+                    className={styles.cards}
+                    ref={cardRef}
+                    variants={cardContainer}
+                    initial="hidden"
+                    animate={cardInView ? "visible" : "hidden"}
+                >
+                    {destination.map((item, index) => (
+                        <motion.div  variants={cardItem} key={index}>
 
-                        <div key={index} className={styles.card}>
-                            <Image src={item.image} className={styles.des} alt={item.place} />
-                            <div className={styles.details}>
-                                <div className={styles.place}>
-                                    <h3>{item.place}</h3>
-                                    <p>{item.price}</p>
-                                </div>
-                                <div className={styles.days}>
-                                    <Image className={styles.icon} src={item.icon} alt="icon" />
-                                    <p>{item.days}</p>
+                            <div key={index} className={styles.card}>
+                                <Image src={item.image} className={styles.des} alt={item.place} />
+                                <div className={styles.details}>
+                                    <div className={styles.place}>
+                                        <h3>{item.place}</h3>
+                                        <p>{item.price}</p>
+                                    </div>
+                                    <div className={styles.days}>
+                                        <Image className={styles.icon} src={item.icon} alt="icon" />
+                                        <p>{item.days}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </motion.div>
-                ))}
-            </motion.div>
+                        </motion.div>
+                    ))}
+                </motion.div>
+            </div>
         </div>
     );
 }
