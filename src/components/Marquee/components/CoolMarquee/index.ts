@@ -1,0 +1,1 @@
+export { CoolMarquee } from './CoolMarquee'

@@ -1,0 +1,244 @@
+.main {
+  display: flex;
+  height: 100vh;
+  justify-items: center;
+  align-items: center;
+  .container {
+    display: flex;
+    justify-content: space-between;
+
+    .left {
+      h2 {
+        color: #DF6951;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 1rem;
+        padding-bottom: 1rem;
+      }
+      h1 {
+        font-family: "Volkhov", serif;
+        line-height: 5.563rem;
+        width: 50%;
+
+        span {
+          font-size: clamp( 2rem, 7vw, 5rem);
+          display: inline-block;
+          margin-right: 1rem;
+        }
+
+      }
+      p {
+        font-size: 0.90rem;
+        line-height: 1.5rem;
+        width: 20rem;
+      }
+
+      .subhead {
+        padding-bottom: 1rem;
+      }
+
+      .buttons {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+
+        .button {
+          padding: 10px 20px;
+          background-color: #F1A501;
+          border-radius: 5px;
+          color: white;
+          font-size: 0.75rem;
+          cursor: pointer;
+        }
+
+        .play {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem ;
+
+          .arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 40px;
+            width:40px;
+            background-color: #DF6951;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+    .right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .img {
+        position: absolute;
+        top: 80px;
+        right: 200px;
+        width: 50%;
+      }
+    }
+
+
+  }
+
+
+
+
+}
+
+@media (max-width: 1280px) {
+.main {
+  height: 70vh;
+  .container {
+    .left {
+
+
+
+      h1 {
+        font-family: "Volkhov", serif;
+        line-height: 4.563rem;
+        padding-bottom: 1rem;
+
+        span {
+          font-size: clamp( 2rem, 7vw, 5rem);
+        }
+      }
+    }
+    .right {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+
+
+      .img {
+        position: absolute;
+        top: 100px;
+        right: 70px;
+        width: 60%;
+      }
+    }
+  }
+}
+}
+
+@media (max-width: 1024px) {
+  .main {
+    height: 50vh;
+  .container {
+    .left {
+      h2 {
+        color: #DF6951;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 0.8rem;
+        padding-bottom: 1rem;
+      }
+
+
+      h1 {
+        font-family: "Volkhov", serif;
+        line-height: 3.563rem;
+        padding-bottom: 1rem;
+        font-weight: bold;
+        span {
+          font-size: clamp( 2rem, 6vw, 3rem);
+        }
+      }
+
+
+    }
+    .right {
+      .img {
+        top: 100px;
+        right: 20px;
+
+      }
+    }
+  }
+}
+}
+
+@media (max-width: 768px) {
+  .main {
+    height: auto;
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center; // optional: center content
+      gap: 2rem; // optional: add spacing between .left and .right
+      padding-top: 70px;
+
+      .left {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding-bottom: 50px;
+
+
+
+
+
+        h1 {
+          text-align: center;
+          line-height: 3.563rem;
+          width: 80%;
+          span {
+            font-size: clamp( 3.5rem, 6vw, 3rem);
+          }
+        }
+        p {
+          width: 60%;
+          text-align: center;
+        }
+        .buttons {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+        }
+      }
+
+      .right {
+        width: 100%;
+        .img {
+          position: static; // remove absolute to flow with content
+          width: 100%; // make image responsive
+          max-width: 400px; // optional: limit image size
+          margin: 0 auto; // center the image
+        }
+      }
+    }
+  }
+}
+
+
+@media (max-width: 640px) {
+  .main {
+    .container {
+      .left {
+
+
+
+
+        h1 {
+          text-align: center;
+          line-height: 3.563rem;
+
+          span {
+            font-size: clamp( 2rem, 9vw, 7rem);
+
+          }
+        }
+      }
+    }
+  }
+}
