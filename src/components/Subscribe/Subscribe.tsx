@@ -39,7 +39,7 @@ export default function Subscribe() {
                 x:0,
                 repeat: -1,
                 yoyo:true,
-                rotation: 360,
+                rotation: 90,
                 borderRadius: '100%',
                 duration: 2,
                 ease: 'bounce.out',
@@ -59,9 +59,8 @@ export default function Subscribe() {
                     className={styles.detail}>
                     {/*<Image className={styles.image} src={assets.background} alt="background" />*/}
                     {/*<Image className={styles.send} src={assets.send2} alt="send" />*/}
-                    <Gsap>
-                        <Image className={styles.send} src={assets.send2} alt="send" id="send" />
-                    </Gsap>
+
+                    <Image className={styles.send} src={assets.send2} alt="send" id="send" />
                     <h2>Subscribe to get information, latest news and other interesting offers about Jadoo</h2>
                     <div className={styles.lower}>
                         <div className={styles.input}>
@@ -70,9 +69,7 @@ export default function Subscribe() {
                             <input type="text" placeholder="Enter your email"/>
                         </div>
                         <Gsap>
-
                             <div>
-
                                 <button type="submit">Subscribe</button>
                             </div>
                         </Gsap>
